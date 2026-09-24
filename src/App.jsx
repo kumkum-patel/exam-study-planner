@@ -6,6 +6,7 @@ function App() {
   const [formData, setFormData] = useState(null);
   const [daysRemaining, setDaysRemaining] = useState(null);
   const [schedule, setSchedule] = useState([]);
+  const [completed, setCompleted] = useState({});
 
   const calculateDaysRemaining = (examDate) => {
     const today = new Date();
@@ -57,7 +58,19 @@ function App() {
 
     const plan = generateSchedule(data.chapters, days);
     setSchedule(plan);
+    setCompleted({});
   };
+
+  const toggleDay = (day) => {
+    setCompleted((prev) => ({
+      ...prev,
+      [day]: !prev[day],
+    }));
+  };
+
+  const doneCount = Object.values(completed).filter(Boolean).length;
+  const progressPercent =
+    schedule.length > 0 ? Math.round((doneCount / schedule.length) * 100) : 0;
 
   return (
     <div className="app">
@@ -81,12 +94,35 @@ function App() {
 
       {schedule.length > 0 && (
         <div className="schedule-list">
-          <h3>Study Plan</h3>
+          <div className="schedule-header">
+            <h3>Study Plan</h3>
+            <span className="progress-label">
+              {doneCount}/{schedule.length} done
+            </span>
+          </div>
+
+          <div className="progress-bar-track">
+            <div
+              className="progress-bar-fill"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+
           {schedule.map((item) => (
-            <div key={item.day} className="schedule-item">
+            <label
+              key={item.day}
+              className={`schedule-item ${
+                completed[item.day] ? 'schedule-item-done' : ''
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={!!completed[item.day]}
+                onChange={() => toggleDay(item.day)}
+              />
               <span className="day-badge">Day {item.day}</span>
               <span className="chapter-text">{item.chapters}</span>
-            </div>
+            </label>
           ))}
         </div>
       )}
