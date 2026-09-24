@@ -20,16 +20,18 @@ h1 {
   text-align: center;
   color: #ffffff;
   margin-bottom: 24px;
+  font-size: 1.8rem;
+  letter-spacing: -0.5px;
 }
 
 form {
   background: #ffffff;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
 }
 
 form div {
@@ -45,42 +47,49 @@ label {
 }
 
 input {
-  padding: 10px 12px;
+  padding: 11px 14px;
   border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 input:focus {
   outline: none;
   border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
 }
 
 button {
   margin-top: 8px;
-  padding: 12px;
-  background: #6366f1;
+  padding: 13px;
+  background: linear-gradient(135deg, #6366f1, #7c3aed);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
 button:hover {
-  background: #4f46e5;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 .result-card {
   margin-top: 20px;
   background: #ffffff;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 16px;
+  padding: 22px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease;
 }
 
 .result-card h2 {
@@ -94,8 +103,8 @@ button:hover {
 }
 
 .days-number {
-  font-size: 2.2rem;
-  font-weight: 700;
+  font-size: 2.4rem;
+  font-weight: 800;
   color: #6366f1;
   display: block;
 }
@@ -113,41 +122,10 @@ button:hover {
 .schedule-list {
   margin-top: 20px;
   background: #ffffff;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.schedule-list h3 {
-  margin: 0 0 16px;
-  color: #1f2937;
-}
-
-.schedule-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid #f3f4f6;
-}
-
-.schedule-item:last-child {
-  border-bottom: none;
-}
-
-.day-badge {
-  background: #ede9fe;
-  color: #6366f1;
-  font-weight: 700;
-  font-size: 0.85rem;
-  padding: 4px 10px;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-
-.chapter-text {
-  color: #374151;
-  font-size: 0.95rem;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease;
 }
 
 .schedule-header {
@@ -159,6 +137,7 @@ button:hover {
 
 .schedule-header h3 {
   margin: 0;
+  color: #1f2937;
 }
 
 .progress-label {
@@ -169,7 +148,7 @@ button:hover {
 
 .progress-bar-track {
   width: 100%;
-  height: 8px;
+  height: 9px;
   background: #f3f4f6;
   border-radius: 999px;
   overflow: hidden;
@@ -178,17 +157,23 @@ button:hover {
 
 .progress-bar-fill {
   height: 100%;
-  background: #6366f1;
-  transition: width 0.3s ease;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  transition: width 0.35s ease;
 }
 
 .schedule-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 0;
+  padding: 11px 0;
   border-bottom: 1px solid #f3f4f6;
   cursor: pointer;
+  transition: background 0.15s;
+  border-radius: 8px;
+}
+
+.schedule-item:hover {
+  background: #f9fafb;
 }
 
 .schedule-item:last-child {
@@ -202,6 +187,21 @@ button:hover {
   cursor: pointer;
 }
 
+.day-badge {
+  background: #ede9fe;
+  color: #6366f1;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.chapter-text {
+  color: #374151;
+  font-size: 0.95rem;
+}
+
 .schedule-item-done .chapter-text {
   text-decoration: line-through;
   color: #9ca3af;
@@ -210,4 +210,15 @@ button:hover {
 .schedule-item-done .day-badge {
   background: #d1fae5;
   color: #059669;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
