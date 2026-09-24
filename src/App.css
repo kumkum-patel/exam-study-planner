@@ -109,3 +109,43 @@ button:hover {
   color: #9ca3af;
   font-style: italic;
 }
+
+.schedule-list {
+  margin-top: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.schedule-list h3 {
+  margin: 0 0 16px;
+  color: #1f2937;
+}
+
+.schedule-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
+}
+
+.day-badge {
+  background: #ede9fe;
+  color: #6366f1;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.chapter-text {
+  color: #374151;
+  font-size: 0.95rem;
+}
